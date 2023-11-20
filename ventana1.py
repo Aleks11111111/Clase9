@@ -7,6 +7,8 @@ from PyQt5 import QtGui, QtCore
 from PyQt5.QtCore import Qt
 from cliente import Cliente
 
+from ventana2 import Ventana2
+
 
 class Ventana1(QMainWindow):
 
@@ -345,7 +347,7 @@ class Ventana1(QMainWindow):
         self.botonBuscar.setStyleSheet("background-color: #008845;"
                                           "color: #FFFFFF;"
                                           "padding: 10px;"
-                                          "margin-top: 40px;")
+                                          "margin-top: 10px;")
 
         self.botonBuscar.clicked.connect(self.accion_botonBuscar)
 
@@ -360,12 +362,33 @@ class Ventana1(QMainWindow):
         self.botonRecuperar.setStyleSheet("background-color: #008845;"
                                         "color: #FFFFFF;"
                                         "padding: 10px;"
-                                        "margin-top: 40px;")
+                                        "margin-top: 10px;")
 
         self.botonRecuperar.clicked.connect(self.accion_botonRecuperar)
 
         # Agregamos los dos botones al layout ladoIzquierdo
         self.ladoDerecho.addRow(self.botonBuscar, self.botonRecuperar)
+
+
+
+        # BOTON CONTINUAR
+        # Hacemos el boton para recuperar la contraseña
+        self.botonContinuar = QPushButton("Continuar")
+
+        # Establecemos el ancho del boton
+        self.botonContinuar.setFixedWidth(90)
+
+
+        # Le ponemos los estilos
+        self.botonContinuar.setStyleSheet("background-color: #008845;"
+                                          "color: #FFFFFF;"
+                                          "padding: 10px;"
+                                          "margin-top: 10px;")
+
+        self.botonContinuar.clicked.connect(self.accion_botonContinuar)
+
+        # Agregamos el boton botonContnuar al layout ladoDerecho
+        self.ladoDerecho.addRow(self.botonContinuar)
 
 
 
@@ -803,6 +826,12 @@ class Ventana1(QMainWindow):
 
                 # Hacemos que la ventana de dialogo se vea
                 self.ventanaDialogo.exec_()
+
+
+    def accion_botonContinuar(self):
+        self.hide()
+        self.ventana2 = Ventana2(self)
+        self.ventana2.show()
 
 
 
