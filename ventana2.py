@@ -274,7 +274,7 @@ class Ventana2(QMainWindow):
         self.ventana3.show()
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     # Hacemos que la aplicacion de genere
     app = QApplication(sys.argv)
 
