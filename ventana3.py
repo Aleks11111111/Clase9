@@ -11,11 +11,11 @@ from cliente import Cliente
 
 class Ventana3(QMainWindow):
 
-    def __init__(self, anterior):
-        super(Ventana3, self).__init__(anterior)
+    def __init__(self, parent=None):
+        super(Ventana3, self).__init__(parent)
 
         # Creamos un atributo que guarde la ventana anterior
-        self.ventanaAnterior = anterior
+        #self.ventanaAnterior = anterior
 
         # poner el titulo
         self.setWindowTitle("Usuarios Registrados")
@@ -187,53 +187,59 @@ class Ventana3(QMainWindow):
             self.tabla.setItem(self.contador, 10, QTableWidgetItem(u.respuesta3))
             self.contador += 1
 
-            # Metemos la tabla en el scroll
-            self.scrollArea.setWidget(self.tabla)
-
-            # Metemos en el layout vertical el scroll
-            self.vertical.addWidget(self.scrollArea)
-
-            # Ponemos un espacio despues
-            self.vertical.addStretch()
 
 
 
-            # BOTON VOLVER
-            # Hacemos el boton para devolver a la ventana anterior
-            self.botonVolver = QPushButton("Volver")
+        # Metemos la tabla en el scroll
+        self.scrollArea.setWidget(self.tabla)
 
-            # Establecemos el ancho del boton
-            self.botonVolver.setFixedWidth(90)
+        # Metemos en el layout vertical el scroll
+        self.vertical.addWidget(self.scrollArea)
 
-            # Le ponemos los estilos
-            self.botonVolver.setStyleSheet("background-color: #008845;"
-                                           "color: #FFFFFF;"
-                                           "padding: 10px;"
-                                           "margin-top: 10px;")
-
-            self.botonVolver.clicked.connect(self.metodo_botonVolver)
-
-            # Agregamos el boton botonContnuar al layout ladoDerecho
-            self.vertical.addWidget(self.botonVolver)
+        # Ponemos un espacio despues
+        self.vertical.addStretch()
 
 
 
-            # --- OJO IMPORTANTE PONER AL FINAL ---
+        # BOTON VOLVER
+        # Hacemos el boton para devolver a la ventana anterior
+        self.botonVolver = QPushButton("Volver")
 
-            # indicamos que el layout principal del fondo es horizontal
-            self.fondo.setLayout(self.vertical)
+        # Establecemos el ancho del boton
+        self.botonVolver.setFixedWidth(90)
+
+        # Le ponemos los estilos
+        self.botonVolver.setStyleSheet("background-color: #008845;"
+                                       "color: #FFFFFF;"
+                                       "padding: 10px;"
+                                       "margin-top: 10px;")
+
+        self.botonVolver.clicked.connect(self.metodo_botonVolver)
+
+        # Agregamos el boton botonContnuar al layout ladoDerecho
+        self.vertical.addWidget(self.botonVolver)
+
+
+
+        # --- OJO IMPORTANTE PONER AL FINAL ---
+
+        # indicamos que el layout principal del fondo es horizontal
+        self.fondo.setLayout(self.vertical)
 
 
 
     def metodo_botonVolver(self):
+        from ventana2 import Ventana2
         self.hide()
-        self.ventanaAnterior.show()
+        self.ventana2 = Ventana2()
+        self.ventana2.show()
 
 
 
 if __name__ == '__main__':
     # Hacemos que la aplicacion de genere
     app = QApplication(sys.argv)
+
 
     # Crear un objeto de tipo Ventana1 con el nombre ventana1
     ventana3 = Ventana3()
