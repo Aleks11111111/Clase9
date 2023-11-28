@@ -5,9 +5,11 @@ from PyQt5.QtWidgets import QMainWindow, QDesktopWidget, QLabel, QHBoxLayout, QA
     QLineEdit, QDialog, QDialogButtonBox, QVBoxLayout
 from PyQt5 import QtGui, QtCore
 from PyQt5.QtCore import Qt
+
 from cliente import Cliente
 
 from ventana2 import Ventana2
+
 
 
 class Ventana1(QMainWindow):
@@ -349,7 +351,11 @@ class Ventana1(QMainWindow):
                                           "padding: 10px;"
                                           "margin-top: 10px;")
 
+
         self.botonBuscar.clicked.connect(self.accion_botonBuscar)
+
+        # self.botonBuscar.clicked.connect(self.accion_botonBuscar)
+
 
         # BOTON RECUPERAR
         # Hacemos el boton para recuperar la contraseña
@@ -408,6 +414,142 @@ class Ventana1(QMainWindow):
 
         # indicamos que el layout principal del fondo es horizontal
         self.fondo.setLayout(self.horizontal)
+
+
+    def accion_botonLimpiar(self):
+        self.nombreCompleto.setText('')
+        self.usuario.setText('')
+        self.password.setText('')
+        self.password2.setText('')
+        self.documento.setText('')
+        self.correo.setText('')
+        self.pregunta1.setText('')
+        self.respuesta1.setText('')
+        self.pregunta2.setText('')
+        self.respuesta2.setText('')
+        self.pregunta3.setText('')
+        self.respuesta3.setText('')
+
+
+
+
+    def accion_botonRegistrar(self):
+
+        # Creamos la ventana de dialogo
+        self.ventanaDialogo = QDialog(None, QtCore.Qt.WindowSystemMenuHint | QtCore.Qt.WindowTitleHint)
+
+        # Definimos el tamaño de la ventana
+        self.ventanaDialogo.resize(300, 150)
+
+        # Creamos el boton para aceptar
+        self.botonAceptar = QDialogButtonBox.Ok
+        self.opciones = QDialogButtonBox(self.botonAceptar)
+        self.opciones.accepted.connect(self.ventanaDialogo.accept)
+
+        # Establecemos el titulo de la ventana
+        self.ventanaDialogo.setWindowTitle("Formulario de registro")
+
+        # Configuramos la ventana para que sea modal
+        self.ventanaDialogo.setWindowModality(Qt.ApplicationModal)
+
+        # Creamos un layout vertical
+        self.vertical = QVBoxLayout()
+
+        # Creamos un label para los mensajes
+        self.mensaje = QLabel("")
+
+        # Le ponemos estilos al label mensaje
+        self.mensaje.setStyleSheet("background-color: #008845; color: #FFFFFF; padding: 10px;")
+
+        # Agregamos el label de mensaje
+        self.vertical.addWidget(self.mensaje)
+
+        # Agregamos las opciones de los botones
+        self.vertical.addWidget(self.opciones)
+
+        # Establecemos el layout para la ventana
+        self.ventanaDialogo.setLayout(self.vertical)
+
+        # Variable para controlar que se han ingresado los datos correctos
+        self.datosCorrectos = True
+
+        # Validamos que los passwords sean iguales
+        if (
+            self.password.text() != self.password2.text()
+        ):
+            self.datosCorrectos = True
+
+            # Escribimos el texto explicativo
+            self.mensaje.setText("Los passwords no son iguales")
+
+            # Hacemos que la ventana de dialogo se vea
+            self.ventanaDialogo.exec_()
+
+            # Validamos que se ingresen todos los campos
+
+        if (
+                self.nombreCompleto.text() == ''
+                or self.usuario.text() == ''
+                or self.password.text() == ''
+                or self.password2.text() == ''
+                or self.documento.text() == ''
+                or self.correo.text() == ''
+                or self.pregunta1.text() == ''
+                or self.respuesta1.text() == ''
+                or self.pregunta2.text() == ''
+                or self.respuesta2.text() == ''
+                or self.pregunta3.text() == ''
+                or self.respuesta3.text() == ''
+        ):
+
+            self.datosCorrectos = False
+
+            # Establecemos el texto explicativo
+            self.mensaje.setText("Debe ingresar todos los campos")
+
+            # Hacemos que la ventana de dialogo se vea
+            self.ventanaDialogo.exec_()
+
+        # Si los datos estan correcto
+        if self.datosCorrectos:
+
+            # Abrimos el archivo en modo agregar escribidno datos en binario
+            self.file = open('datos/clientes.txt', 'ab')
+
+
+            # Trae el texto de los QLineEdit() y los agrupa concatenados
+            # Para escribir en el archivo en formato binario UTF-8
+            self.file.write(bytes(self.nombreCompleto.text() + ";"
+                                  + self.usuario.text() + ";"
+                                  + self.password.text() + ";"
+                                  + self.password2.text() + ";"
+                                  + self.documento.text() + ";"
+                                  + self.correo.text() + ";"
+                                  + self.pregunta1.text() + ";"
+                                  + self.respuesta1.text() + ";"
+                                  + self.pregunta2.text() + ";"
+                                  + self.respuesta2.text() + ";"
+                                  + self.pregunta3.text() + ";"
+                                  + self.respuesta3.text() + "\n", encoding='UTF-8'))
+            # Esto nod cierra el archivo
+            self.file.close()
+
+
+            # Abrimos en modo lectura en formato bytes
+            self.file = open('datos/clientes.txt', 'rb')
+            # Recorrer el archivo liena por lines
+            while self.file:
+                linea = self.file.readline().decode('UTF-8')
+                print(linea)
+                if linea == '': # Para cuando encuentre una linea vacia
+                    break
+            self.file.close()
+
+
+
+
+
+
 
 
 
