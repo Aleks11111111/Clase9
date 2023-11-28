@@ -8,6 +8,8 @@ from PyQt5.QtWidgets import QMainWindow, QLabel, QHBoxLayout, QApplication, QScr
 from cliente import Cliente
 from ventana3 import Ventana3
 
+from ventana4 import Ventana4
+
 
 class Ventana2(QMainWindow):
 
@@ -38,7 +40,7 @@ class Ventana2(QMainWindow):
 
         # Imagen de fondo
         self.imagen = QLabel(self)
-        self.imagenPantalla = QPixmap('imagenes/empresa.jpg')
+        self.imagenPantalla = QPixmap('imagenes/man.png')
 
         # Establecemos el modo para escalar la imagen
         self.imagen.setPixmap(self.imagenPantalla)
@@ -143,7 +145,7 @@ class Ventana2(QMainWindow):
                     # Establecemos el ancho del botón
                     self.botonAccion.setFixedWidth(150)
                     # Estilo del botón
-                    self.botonAccion.setStyleSheet("background-color: #008B45;"
+                    self.botonAccion.setStyleSheet("background-color: #3164f4;"
                                                    "color: #FFFFFF;"
                                                    "padding: 10px;")
                     # Agregamos el layout al layout para que se vea
@@ -172,7 +174,7 @@ class Ventana2(QMainWindow):
         # Establecemos el ancho del botón
         self.botonFormaTabular.setFixedWidth(110)
         # Le ponemos estilos
-        self.botonFormaTabular.setStyleSheet("background-color: #008B45;"
+        self.botonFormaTabular.setStyleSheet("background-color: #3164f4;"
                                              "color: #FFFFFF;"
                                              "padding: 10px;"
                                              "margin-top: 10px;")
@@ -188,7 +190,7 @@ class Ventana2(QMainWindow):
         # Establecemos el ancho del botón
         self.botonVolver.setFixedWidth(110)
         # Le ponemos estilos
-        self.botonVolver.setStyleSheet("background-color: #008B45;"
+        self.botonVolver.setStyleSheet("background-color: #3164f4;"
                                        "color: #FFFFFF;"
                                        "padding: 10px;"
                                        "margin-top: 10px;")
@@ -205,7 +207,11 @@ class Ventana2(QMainWindow):
         # Metodo para controlar las acciones de los botones
 
     def metodo_accionBotones(self, cedulaUsuario):
-        print(cedulaUsuario)
+        #print(cedulaUsuario)
+        self.hide()
+        self.ventana4 = Ventana4(self, cedulaUsuario)
+        self.ventana4.show()
+
 
     def metodo_botonVolver(self):
         from ventana1 import Ventana1
@@ -231,38 +237,3 @@ if __name__ == "__main__":
     ventana2.show()
 
     sys.exit(app.exec_())
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
