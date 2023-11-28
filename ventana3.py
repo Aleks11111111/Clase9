@@ -209,7 +209,7 @@ class Ventana3(QMainWindow):
         self.botonVolver.setFixedWidth(90)
 
         # Le ponemos los estilos
-        self.botonVolver.setStyleSheet("background-color: #008845;"
+        self.botonVolver.setStyleSheet("background-color: #3164f4;"
                                        "color: #FFFFFF;"
                                        "padding: 10px;"
                                        "margin-top: 10px;")

@@ -43,7 +43,7 @@ class Ventana1(QMainWindow):
         self.fondo = QLabel(self)
 
         # Definimos la imagen de fondo
-        self.imagenFondo = QPixmap('imagenes/empresa.jpg')
+        self.imagenFondo = QPixmap('imagenes/ges.jpg')
 
         # Definimos la iamgen de fondo
         self.fondo.setPixmap(self.imagenFondo)
@@ -165,7 +165,7 @@ class Ventana1(QMainWindow):
         self.botonRegistrar.setFixedWidth(90)
 
         # Le ponemos los estilos
-        self.botonRegistrar.setStyleSheet("background-color: #008845;"
+        self.botonRegistrar.setStyleSheet("background-color: #3164f4;"
                                           "color: #FFFFFF;"
                                           "padding: 10px;"
                                           "margin-top: 40px;")
@@ -182,7 +182,7 @@ class Ventana1(QMainWindow):
         self.botonLimpiar.setFixedWidth(90)
 
         # Le ponemos los estilos
-        self.botonLimpiar.setStyleSheet("background-color: #008845;"
+        self.botonLimpiar.setStyleSheet("background-color: #3164f4;"
                                         "color: #FFFFFF;"
                                         "padding: 10px;"
                                         "margin-top: 40px;")
@@ -344,7 +344,7 @@ class Ventana1(QMainWindow):
         self.botonBuscar.setFixedWidth(90)
 
         # Le ponemos los estilos
-        self.botonBuscar.setStyleSheet("background-color: #008845;"
+        self.botonBuscar.setStyleSheet("background-color: #3164f4;"
                                           "color: #FFFFFF;"
                                           "padding: 10px;"
                                           "margin-top: 10px;")
@@ -359,7 +359,7 @@ class Ventana1(QMainWindow):
         self.botonRecuperar.setFixedWidth(90)
 
         # Le ponemos los estilos
-        self.botonRecuperar.setStyleSheet("background-color: #008845;"
+        self.botonRecuperar.setStyleSheet("background-color: #3164f4;"
                                         "color: #FFFFFF;"
                                         "padding: 10px;"
                                         "margin-top: 10px;")
@@ -380,7 +380,7 @@ class Ventana1(QMainWindow):
 
 
         # Le ponemos los estilos
-        self.botonContinuar.setStyleSheet("background-color: #008845;"
+        self.botonContinuar.setStyleSheet("background-color: #3164f4;"
                                           "color: #FFFFFF;"
                                           "padding: 10px;"
                                           "margin-top: 10px;")
